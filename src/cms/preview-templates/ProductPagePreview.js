@@ -12,6 +12,9 @@ const ProductPagePreview = ({ entry, getAsset }) => {
   const entryPricingPlans = entry.getIn(['data', 'pricing', 'plans'])
   const pricingPlans = entryPricingPlans ? entryPricingPlans.toJS() : []
 
+  const entryFormFields = entry.getIn(['data', 'form', 'fields'])
+  const formFields = entryFormFields ? entryFormFields.toJS() : []
+
   return (
     <ProductPageTemplate
       image={getAsset(entry.getIn(['data', 'image']))}
@@ -41,6 +44,10 @@ const ProductPagePreview = ({ entry, getAsset }) => {
         heading: entry.getIn(['data', 'pricing', 'heading']),
         description: entry.getIn(['data', 'pricing', 'description']),
         plans: pricingPlans,
+      }}
+      form={{
+        heading: entry.getIn(['data', 'form', 'heading']),
+        fields: formFields,
       }}
     />
   )

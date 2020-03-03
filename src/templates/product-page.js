@@ -5,19 +5,24 @@ import Layout from '../components/Layout'
 import Features from '../components/Features'
 import Testimonials from '../components/Testimonials'
 import Pricing from '../components/Pricing'
+import CustomForm from '../components/CustomForm'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 
-export const ProductPageTemplate = ({
-  image,
-  title,
-  heading,
-  description,
-  intro,
-  main,
-  testimonials,
-  fullImage,
-  pricing,
-}) => (
+export const ProductPageTemplate = (props) => {
+  const {
+    image,
+    title,
+    heading,
+    description,
+    intro,
+    main,
+    testimonials,
+    fullImage,
+    pricing,
+    form
+  } = props;
+
+  return (
   <div className="content">
     <div
       className="full-width-image-container margin-top-0"
@@ -96,13 +101,16 @@ export const ProductPageTemplate = ({
               </h2>
               <p className="is-size-5">{pricing.description}</p>
               <Pricing data={pricing.plans} />
+
+              <p className="is-size-5">Custom form here!</p>
+              <CustomForm data={form} />
             </div>
           </div>
         </div>
       </div>
     </section>
   </div>
-)
+)}
 
 ProductPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -126,6 +134,7 @@ ProductPageTemplate.propTypes = {
     description: PropTypes.string,
     plans: PropTypes.array,
   }),
+  form: PropTypes.any
 }
 
 const ProductPage = ({ data }) => {
@@ -142,6 +151,7 @@ const ProductPage = ({ data }) => {
         main={frontmatter.main}
         testimonials={frontmatter.testimonials}
         fullImage={frontmatter.full_image}
+        form={frontmatter.form}
         pricing={frontmatter.pricing}
       />
     </Layout>
@@ -240,6 +250,9 @@ export const productPageQuery = graphql`
             plan
             price
           }
+        }
+        form {
+          heading
         }
       }
     }

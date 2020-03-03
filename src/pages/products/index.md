@@ -98,4 +98,6 @@ pricing:
         - Unlimited varieties
       plan: Custom
       price: '??'
+form:
+  heading: First custom form
 ---
