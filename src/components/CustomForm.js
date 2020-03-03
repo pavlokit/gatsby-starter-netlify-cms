@@ -17,7 +17,6 @@ const CustomForm = ({ data }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
     const form = e.target;
 
     fetch("/", {
@@ -70,11 +69,7 @@ const CustomForm = ({ data }) => {
           }
         })}
 
-        {fields.length && (
-          <button type="button" onClick={handleSubmit}>
-            {submit}
-          </button>
-        )}
+        {fields.length && <button type="submit">{submit}</button>}
       </form>
     </section>
   );
