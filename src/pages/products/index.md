@@ -9,6 +9,8 @@ form:
       type: text
     - name: Email
       type: email
+    - name: Age
+      type: number
   submit: Send data
 path: /products
 templateKey: product-page
