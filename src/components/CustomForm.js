@@ -8,12 +8,11 @@ function encode(data) {
 }
 
 const CustomForm = ({ data }) => {
-  const { heading, fields } = data;
-
-  console.log("F: ", data);
+  const { heading, fields, submit = "Submit" } = data;
+  const formData = {};
 
   const handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    formData[e.target.name] = e.target.value;
   };
 
   const handleSubmit = e => {
@@ -26,7 +25,7 @@ const CustomForm = ({ data }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": form.getAttribute("name"),
-        ...this.state
+        ...formData
       })
     })
       .then(() => {
@@ -50,12 +49,12 @@ const CustomForm = ({ data }) => {
         {fields.map((field, index) => {
           if (field.name && field.type) {
             return (
-              <div className="field">
+              <div className="field" key={index}>
                 <label className="label" htmlFor={field.name}>
                   {field.name}
                 </label>
 
-                <div className="control" key={index}>
+                <div className="control">
                   <input
                     type={field.type}
                     name={field.name}
@@ -70,6 +69,12 @@ const CustomForm = ({ data }) => {
             return null;
           }
         })}
+
+        {fields.length && (
+          <button type="button" onClick={handleSubmit}>
+            {submit}
+          </button>
+        )}
       </form>
     </section>
   );
