@@ -1,35 +1,79 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+// import PropTypes from "prop-types";
 
-const CustomForm = ({data}) => {
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
+const CustomForm = ({ data }) => {
   const { heading, fields } = data;
 
-  console.log('F: ', fields);
+  console.log("F: ", data);
+
+  const handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...this.state
+      })
+    })
+      .then(() => {
+        console.log("Works!");
+      })
+      .catch(error => alert(error));
+  };
 
   return (
     <section>
       <h3>{heading}</h3>
 
-      <form>
-        {
-          fields.map(field => {
-            if (field.name && field.type) {
-              return (
-                <input
-                  type={field.type}
-                  name={field.name}
-                  placeholder={field.name}
-                />
-              )
-            } else {
-              return null;
-            }
-          })
-        }
+      <form
+        name="custom"
+        method="post"
+        action="/contact/custom/"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
+      >
+        {fields.map((field, index) => {
+          if (field.name && field.type) {
+            return (
+              <div className="field">
+                <label className="label" htmlFor={field.name}>
+                  {field.name}
+                </label>
+
+                <div className="control" key={index}>
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    id={field.name}
+                    placeholder={field.name}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
       </form>
     </section>
-  )
-}
+  );
+};
 
 // Pricing.propTypes = {
 //   data: PropTypes.arrayOf(
@@ -42,4 +86,4 @@ const CustomForm = ({data}) => {
 //   ),
 // }
 
-export default CustomForm
+export default CustomForm;
