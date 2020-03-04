@@ -143,6 +143,8 @@ ProductPageTemplate.propTypes = {
 const ProductPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
 
+  console.log("data.markdownRemark", data.markdownRemark);
+
   return (
     <Layout>
       <ProductPageTemplate
@@ -257,9 +259,6 @@ export const productPageQuery = graphql`
         form {
           heading
           submit
-          fields {
-            types
-          }
         }
       }
     }

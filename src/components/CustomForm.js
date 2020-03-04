@@ -33,6 +33,8 @@ const CustomForm = ({ data }) => {
       .catch(error => alert(error));
   };
 
+  console.log("F: ", fields);
+
   return (
     <section>
       <h3>{heading}</h3>
@@ -50,8 +52,6 @@ const CustomForm = ({ data }) => {
             return null;
           }
 
-          console.log('F: ', field);
-
           return (
             <div className="field" key={index}>
               <label className="label" htmlFor={field.name}>
@@ -59,30 +59,29 @@ const CustomForm = ({ data }) => {
               </label>
 
               <div className="control">
-                {
-                  field.type === 'select'
-                    ? (
-                      <select id={field.name} onChange={handleChange} name={field.name}>
-                        {
-                          !!field.options && field.options.map(option => (
-                            <option key={option.name}>{option.name}</option>
-                          ))
-                        }
-                      </select>
-                    )
-                    : (
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        id={field.name}
-                        placeholder={field.name}
-                        onChange={handleChange}
-                      />
-                    )
-                }
+                {field.type === "select" ? (
+                  <select
+                    id={field.name}
+                    onChange={handleChange}
+                    name={field.name}
+                  >
+                    {!!field.options &&
+                      field.options.map(option => (
+                        <option key={option.name}>{option.name}</option>
+                      ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    id={field.name}
+                    placeholder={field.name}
+                    onChange={handleChange}
+                  />
+                )}
               </div>
             </div>
-          )
+          );
         })}
 
         {fields.length && <button type="submit">{submit}</button>}
