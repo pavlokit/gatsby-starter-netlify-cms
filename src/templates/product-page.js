@@ -258,8 +258,7 @@ export const productPageQuery = graphql`
           heading
           submit
           fields {
-            name
-            type
+            types
           }
         }
       }

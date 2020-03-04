@@ -2,15 +2,6 @@
 heading: Great coffee with a conscience
 form:
   heading: First custom form
-  fields:
-    - name: First name
-      type: text
-    - name: Last name
-      type: text
-    - name: Email
-      type: email
-    - name: Age
-      type: number
   submit: Send data
 path: /products
 templateKey: product-page

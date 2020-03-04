@@ -46,27 +46,43 @@ const CustomForm = ({ data }) => {
         onSubmit={handleSubmit}
       >
         {fields.map((field, index) => {
-          if (field.name && field.type) {
-            return (
-              <div className="field" key={index}>
-                <label className="label" htmlFor={field.name}>
-                  {field.name}
-                </label>
-
-                <div className="control">
-                  <input
-                    type={field.type}
-                    name={field.name}
-                    id={field.name}
-                    placeholder={field.name}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            );
-          } else {
+          if (!field.name || !field.type) {
             return null;
           }
+
+          console.log('F: ', field);
+
+          return (
+            <div className="field" key={index}>
+              <label className="label" htmlFor={field.name}>
+                {field.name}
+              </label>
+
+              <div className="control">
+                {
+                  field.type === 'select'
+                    ? (
+                      <select id={field.name} onChange={handleChange} name={field.name}>
+                        {
+                          !!field.options && field.options.map(option => (
+                            <option key={option.name}>{option.name}</option>
+                          ))
+                        }
+                      </select>
+                    )
+                    : (
+                      <input
+                        type={field.type}
+                        name={field.name}
+                        id={field.name}
+                        placeholder={field.name}
+                        onChange={handleChange}
+                      />
+                    )
+                }
+              </div>
+            </div>
+          )
         })}
 
         {fields.length && <button type="submit">{submit}</button>}
