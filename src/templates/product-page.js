@@ -259,6 +259,14 @@ export const productPageQuery = graphql`
         form {
           heading
           submit
+          fields {
+            type
+            inputType
+            name
+            options {
+              name
+            }
+          }
         }
       }
     }
