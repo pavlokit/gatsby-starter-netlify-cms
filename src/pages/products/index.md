@@ -3,16 +3,7 @@ heading: Great coffee with a conscience
 form:
   heading: First custom form
   submit: Send data
-  fields:
-    - type: input
-      name: ff
-      inputType: text
-    - type: select
-      name: sss
-      options:
-        - name: '1'
-    - type: checkbox
-      name: rttrtrtr
+  fields: []
 path: /products
 templateKey: product-page
 title: Our Coffee
