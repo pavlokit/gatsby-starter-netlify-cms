@@ -11,8 +11,12 @@ form:
       name: sss
       options:
         - name: '1'
-    - type: checkbox
+        - name: '222'
+    - type: checkboxGroup
       name: rttrtrtr
+      options:
+        - name: text
+        - name: email
 path: /products
 templateKey: product-page
 title: Our Coffee

@@ -305,15 +305,23 @@ collections:
                             ],
                         },
                         {
-                          label: Checkbox,
-                          name: checkbox,
+                          label: Checkbox group,
+                          name: checkboxGroup,
                           widget: list,
                           fields:
                             [
                               {
-                                label: Checkbox name,
-                                name: name,
-                                widget: string,
+                                label: Checkbox,
+                                name: options,
+                                widget: list,
+                                fields:
+                                  [
+                                    {
+                                      label: Checkbox label,
+                                      name: name,
+                                      widget: string,
+                                    },
+                                  ],
                               },
                             ],
                         },

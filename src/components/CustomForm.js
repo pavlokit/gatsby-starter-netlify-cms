@@ -7,6 +7,49 @@ function encode(data) {
     .join("&");
 }
 
+const CheckboxGroup = ({ options, onChange }) =>
+  options && options.length ? (
+    <div className="checkboxGroup">
+      {options.map(({ name }) => (
+        <label className="checkbox__label">
+          {name}
+          <input type="checkbox" onChange={onChange} />
+        </label>
+      ))}
+    </div>
+  ) : null;
+
+const Input = ({ type, name, onChange }) => (
+  <input
+    className="input"
+    type={type}
+    name={name}
+    id={name}
+    placeholder={name}
+    onChange={onChange}
+  />
+);
+
+const Select = ({ name, onChange, options }) => (
+  <div className="select">
+    <select id={name} onChange={onChange} name={name}>
+      {!!options &&
+        options.map(option => <option key={option.name}>{option.name}</option>)}
+    </select>
+  </div>
+);
+
+const renderFormSection = (field, onChange) => {
+  switch (field.type) {
+    case "checkboxGroup":
+      return <CheckboxGroup options={field.options} onChange={onChange} />;
+    case "select":
+      return <Select {...field} onChange={onChange} />;
+    default:
+      return <Input {...field} onChange={onChange} />;
+  }
+};
+
 const CustomForm = ({ data }) => {
   const { heading, fields = [], submit = "Submit" } = data;
   const formData = {};
@@ -33,8 +76,6 @@ const CustomForm = ({ data }) => {
       .catch(error => alert(error));
   };
 
-  console.log("F: ", fields);
-
   return (
     <section>
       <h3>{heading}</h3>
@@ -48,7 +89,7 @@ const CustomForm = ({ data }) => {
         onSubmit={handleSubmit}
       >
         {fields.map((field, index) => {
-          if (!field.name || !field.type) {
+          if ((!field.name || !field.type) && field.type !== "checkboxGroup") {
             return null;
           }
 
@@ -57,34 +98,14 @@ const CustomForm = ({ data }) => {
               <label className="label" htmlFor={field.name}>
                 {field.name}
               </label>
-
               <div className="control">
-                {field.type === "select" ? (
-                  <select
-                    id={field.name}
-                    onChange={handleChange}
-                    name={field.name}
-                  >
-                    {!!field.options &&
-                      field.options.map(option => (
-                        <option key={option.name}>{option.name}</option>
-                      ))}
-                  </select>
-                ) : (
-                  <input
-                    type={field.type}
-                    name={field.name}
-                    id={field.name}
-                    placeholder={field.name}
-                    onChange={handleChange}
-                  />
-                )}
+                {renderFormSection(field, handleChange)}
               </div>
             </div>
           );
         })}
 
-        {fields.length && <button type="submit">{submit}</button>}
+        {fields.length && <button className="button" type="submit">{submit}</button>}
       </form>
     </section>
   );
