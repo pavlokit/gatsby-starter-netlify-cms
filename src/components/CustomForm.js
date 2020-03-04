@@ -8,7 +8,7 @@ function encode(data) {
 }
 
 const CustomForm = ({ data }) => {
-  const { heading, fields, submit = "Submit" } = data;
+  const { heading, fields = [], submit = "Submit" } = data;
   const formData = {};
 
   const handleChange = e => {
