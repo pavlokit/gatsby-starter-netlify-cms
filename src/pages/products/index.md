@@ -11,6 +11,8 @@ form:
       type: email
     - name: Age
       type: number
+    - name: rrr
+      type: email
   submit: Send data
 path: /products
 templateKey: product-page
