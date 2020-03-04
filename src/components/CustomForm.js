@@ -21,6 +21,7 @@ const CheckboxGroup = ({ options, onChange }) =>
 
 const Input = ({ type, name, onChange }) => (
   <input
+    className="input"
     type={type}
     name={name}
     id={name}
@@ -30,10 +31,12 @@ const Input = ({ type, name, onChange }) => (
 );
 
 const Select = ({ name, onChange, options }) => (
-  <select id={name} onChange={onChange} name={name}>
-    {!!options &&
-      options.map(option => <option key={option.name}>{option.name}</option>)}
-  </select>
+  <div className="select">
+    <select id={name} onChange={onChange} name={name}>
+      {!!options &&
+        options.map(option => <option key={option.name}>{option.name}</option>)}
+    </select>
+  </div>
 );
 
 const renderFormSection = (field, onChange) => {
@@ -102,7 +105,7 @@ const CustomForm = ({ data }) => {
           );
         })}
 
-        {fields.length && <button type="submit">{submit}</button>}
+        {fields.length && <button className="button" type="submit">{submit}</button>}
       </form>
     </section>
   );
