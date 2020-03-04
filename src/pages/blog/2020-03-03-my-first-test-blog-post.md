@@ -8,4 +8,4 @@ featuredimage: /img/chemex.jpg
 tags:
   - Some tag
 ---
-And here is some content for it (FULL BODY)
+And here is s**ome content for it (FULL BODY)**
