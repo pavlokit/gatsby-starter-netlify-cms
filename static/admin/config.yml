@@ -325,6 +325,19 @@ collections:
                               },
                             ],
                         },
+                        {
+                          label: Text,
+                          name: text,
+                          widget: object,
+                          fields:
+                            [
+                              {
+                                label: Content,
+                                name: content,
+                                widget: markdown,
+                              },
+                            ],
+                        },
                       ],
                   },
                 ],

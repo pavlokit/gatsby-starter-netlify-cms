@@ -39,12 +39,18 @@ const Select = ({ name, onChange, options }) => (
   </div>
 );
 
+const Text = ({ content }) => (
+  <div>{content}</div>
+)
+
 const renderFormSection = (field, onChange) => {
   switch (field.type) {
     case "checkboxGroup":
       return <CheckboxGroup options={field.options} onChange={onChange} />;
     case "select":
       return <Select {...field} onChange={onChange} />;
+    case "text":
+      return <Text {...field} />;
     default:
       return <Input {...field} onChange={onChange} />;
   }
@@ -89,7 +95,7 @@ const CustomForm = ({ data }) => {
         onSubmit={handleSubmit}
       >
         {fields.map((field, index) => {
-          if ((!field.name || !field.type) && field.type !== "checkboxGroup") {
+          if (!field.type) {
             return null;
           }
 
