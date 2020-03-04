@@ -259,52 +259,65 @@ collections:
                     label: Fields,
                     name: fields,
                     widget: list,
-                    types: [
-                      {
-                        label: Input,
-                        name: Input,
-                        widget: object,
-                        fields: [
-                          { label: Name, name: name, widget: string },
-                          {
-                            label: Type,
-                            name: inputType,
-                            widget: select,
-                            options:
-                              [
-                                { label: Text, value: "text" },
-                                { label: Date, value: "date" },
-                                { label: Email, value: "email" },
-                                { label: Number, value: "number" },
-                              ],
-                          },
-                        ]
-                      },
-                      {
-                        label: Select,
-                        name: Select,
-                        widget: list,
-                        fields: [
-                          { label: Name, name: name, widget: string },
-                          {
-                            label: Options,
-                            name: options,
-                            widget: list,
-                            fields: [
-                                { label: Option name, name: name, widget: string }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        label: Checkbox,
-                        name: Checkbox,
-                        widget: list,
-                        fields: [
-                          { label: Checkbox name, name: name, widget: string }
-                        ]
-                      }
-                    ]
+                    types:
+                      [
+                        {
+                          label: Input,
+                          name: input,
+                          widget: object,
+                          fields:
+                            [
+                              { label: Name, name: name, widget: string },
+                              {
+                                label: Type,
+                                name: inputType,
+                                widget: select,
+                                options:
+                                  [
+                                    { label: Text, value: "text" },
+                                    { label: Date, value: "date" },
+                                    { label: Email, value: "email" },
+                                    { label: Number, value: "number" },
+                                  ],
+                              },
+                            ],
+                        },
+                        {
+                          label: Select,
+                          name: select,
+                          widget: list,
+                          fields:
+                            [
+                              { label: Name, name: name, widget: string },
+                              {
+                                label: Options,
+                                name: options,
+                                widget: list,
+                                fields:
+                                  [
+                                    {
+                                      label: Option name,
+                                      name: name,
+                                      widget: string,
+                                    },
+                                  ],
+                              },
+                            ],
+                        },
+                        {
+                          label: Checkbox,
+                          name: checkbox,
+                          widget: list,
+                          fields:
+                            [
+                              {
+                                label: Checkbox name,
+                                name: name,
+                                widget: string,
+                              },
+                            ],
+                        },
+                      ],
                   },
                 ],
             }
