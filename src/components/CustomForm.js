@@ -9,10 +9,10 @@ function encode(data) {
 
 const CheckboxGroup = ({ options, onChange }) =>
   options && options.length ? (
-    <div className="checkboxGroup">
+    <div className="checkbox__group">
       {options.map(({ name }) => (
-        <label className="checkbox__label">
-          {name}
+        <label className="checkbox__container">
+          <span className="checkbox__label">{name}</span>
           <input type="checkbox" onChange={onChange} />
         </label>
       ))}
@@ -31,7 +31,7 @@ const Input = ({ type, name, onChange }) => (
 );
 
 const Select = ({ name, onChange, options }) => (
-  <div className="select">
+  <div className="select is-fullwidth">
     <select id={name} onChange={onChange} name={name}>
       {!!options &&
         options.map(option => <option key={option.name}>{option.name}</option>)}
@@ -111,7 +111,11 @@ const CustomForm = ({ data }) => {
           );
         })}
 
-        {fields.length && <button className="button" type="submit">{submit}</button>}
+        {fields.length && (
+          <button className="button" type="submit">
+            {submit}
+          </button>
+        )}
       </form>
     </section>
   );
