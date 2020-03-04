@@ -44,6 +44,7 @@ export const ProductPageTemplate = props => {
           {title}
         </h2>
       </div>
+      <CustomForm data={form} />
       <section className="section section--gradient">
         <div className="container">
           <div className="section">
@@ -103,9 +104,6 @@ export const ProductPageTemplate = props => {
                 </h2>
                 <p className="is-size-5">{pricing.description}</p>
                 <Pricing data={pricing.plans} />
-
-                <p className="is-size-5">Custom form here!</p>
-                <CustomForm data={form} />
               </div>
             </div>
           </div>

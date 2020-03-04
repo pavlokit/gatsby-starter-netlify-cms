@@ -1,6 +1,8 @@
 import React from "react";
-import Content, { HTMLContent } from '../components/Content'
-// import PropTypes from "prop-types";
+import remark from "remark";
+import recommended from "remark-preset-lint-recommended";
+import remarkHtml from "remark-html";
+import { HTMLContent } from "../components/Content";
 
 function encode(data) {
   return Object.keys(data)
@@ -14,7 +16,7 @@ const CheckboxGroup = ({ options, onChange }) =>
       {options.map(({ name }) => (
         <label className="checkbox__container">
           <span className="checkbox__label">{name}</span>
-          <input type="checkbox" onChange={onChange} />
+          <input type="checkbox" name={name} onChange={onChange} />
         </label>
       ))}
     </div>
@@ -40,9 +42,15 @@ const Select = ({ name, onChange, options }) => (
   </div>
 );
 
-const Text = ({ content }) => (
-  <div>{content}</div>
-)
+const Text = ({ content }) => {
+  const parsedContent = remark()
+    .use(recommended)
+    .use(remarkHtml)
+    .processSync(content)
+    .toString();
+
+  return <HTMLContent content={parsedContent} />;
+};
 
 const renderFormSection = (field, onChange) => {
   switch (field.type) {
@@ -60,8 +68,6 @@ const renderFormSection = (field, onChange) => {
 const CustomForm = ({ data }) => {
   const { heading, fields = [], submit = "Submit" } = data;
   const formData = {};
-
-  console.log('All data:', data);
 
   const handleChange = e => {
     formData[e.target.name] = e.target.value;
@@ -123,16 +129,5 @@ const CustomForm = ({ data }) => {
     </section>
   );
 };
-
-// Pricing.propTypes = {
-//   data: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       plan: PropTypes.string,
-//       price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//       description: PropTypes.string,
-//       items: PropTypes.array,
-//     })
-//   ),
-// }
 
 export default CustomForm;

@@ -1,5 +1,7 @@
 ---
-heading: Great coffee with a conscience
+templateKey: product-page
+title: Our Coffee
+image: /img/jumbotron.jpg
 form:
   heading: First custom form
   submit: Send data
@@ -7,22 +9,21 @@ form:
     - type: input
       name: ff
       inputType: text
+    - type: text
+      content: 'Тут шось **пишеe**  [dasdasd](dasdasd)'
     - type: select
       name: sss
       options:
         - name: '1'
         - name: '222'
     - type: checkboxGroup
-      name: rttrtrtr
       options:
         - name: text
         - name: email
     - type: text
-      content: Тут шось **пише**
+      content: '# new text text'
+heading: Great coffee with a conscience
 path: /products
-templateKey: product-page
-title: Our Coffee
-image: /img/jumbotron.jpg
 description: >-
   Kaldi is the ultimate spot for coffee lovers who want to learn about their
   java’s origin and support the farmers that grew it. We take coffee production,
