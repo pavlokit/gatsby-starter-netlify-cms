@@ -1,4 +1,5 @@
 import React from "react";
+import Content, { HTMLContent } from '../components/Content'
 // import PropTypes from "prop-types";
 
 function encode(data) {
@@ -59,6 +60,8 @@ const renderFormSection = (field, onChange) => {
 const CustomForm = ({ data }) => {
   const { heading, fields = [], submit = "Submit" } = data;
   const formData = {};
+
+  console.log('All data:', data);
 
   const handleChange = e => {
     formData[e.target.name] = e.target.value;

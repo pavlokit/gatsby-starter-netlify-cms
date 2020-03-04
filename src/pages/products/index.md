@@ -17,6 +17,8 @@ form:
       options:
         - name: text
         - name: email
+    - type: text
+      content: Тут шось **пише**
 path: /products
 templateKey: product-page
 title: Our Coffee
