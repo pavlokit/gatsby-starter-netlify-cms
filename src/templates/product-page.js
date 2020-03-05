@@ -44,7 +44,15 @@ export const ProductPageTemplate = props => {
           {title}
         </h2>
       </div>
-      <CustomForm data={form} />
+
+      <section className="section">
+        <div className="columns">
+          <div className="column is-10 is-offset-1">
+            <CustomForm data={form} />
+          </div>
+        </div>
+      </section>
+
       <section className="section section--gradient">
         <div className="container">
           <div className="section">
@@ -140,8 +148,6 @@ ProductPageTemplate.propTypes = {
 
 const ProductPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-
-  console.log("data.markdownRemark", data.markdownRemark);
 
   return (
     <Layout>

@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import CustomForm from '../components/CustomForm';
 
 export const BlogPostTemplate = ({
   content,
@@ -13,6 +14,7 @@ export const BlogPostTemplate = ({
   tags,
   title,
   helmet,
+  form
 }) => {
   const PostContent = contentComponent || Content
 
@@ -26,7 +28,9 @@ export const BlogPostTemplate = ({
               {title}
             </h1>
             <p>{description}</p>
+
             <PostContent content={content} />
+
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
@@ -39,6 +43,14 @@ export const BlogPostTemplate = ({
                 </ul>
               </div>
             ) : null}
+
+            <section className="section">
+              <div className="columns">
+                <div className="column is-10 is-offset-1">
+                  <CustomForm data={form} />
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -52,6 +64,7 @@ BlogPostTemplate.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
   helmet: PropTypes.object,
+  form: PropTypes.any
 }
 
 const BlogPost = ({ data }) => {
@@ -74,6 +87,7 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        form={post.frontmatter.form}
       />
     </Layout>
   )
@@ -97,6 +111,19 @@ export const pageQuery = graphql`
         title
         description
         tags
+        form {
+          heading
+          submit
+          fields {
+            type
+            inputType
+            name
+            options {
+              name
+            }
+            content
+          }
+        }
       }
     }
   }
