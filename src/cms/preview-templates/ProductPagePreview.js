@@ -15,9 +15,6 @@ const ProductPagePreview = ({ entry, getAsset, widgetFor }) => {
   const entryFormFields = entry.getIn(["data", "form", "fields"]);
   const formFields = entryFormFields ? entryFormFields.toJS() : [];
 
-  console.warn('entry: ', entry);
-  console.warn('formFields: ', formFields);
-
   return (
     <ProductPageTemplate
       image={getAsset(entry.getIn(["data", "image"]))}

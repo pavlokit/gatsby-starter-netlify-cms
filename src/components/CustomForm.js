@@ -70,8 +70,6 @@ const CustomForm = ({ data }) => {
     return null;
   }
 
-  console.log('CustomForm data: ', data);
-
   const { heading, fields = [], submit = "Submit" } = data;
   const formData = {};
 
