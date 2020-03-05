@@ -7,5 +7,14 @@ featuredpost: true
 featuredimage: /img/chemex.jpg
 tags:
   - Some tag
+form:
+  heading: Subscribe today!
+  submit: Subscribe
+  fields:
+    - type: input
+      name: Your email
+      inputType: email
+    - type: text
+      content: '*You can unsubscribe anytime you want*'
 ---
 And here is s**ome content for it (FULL BODY)**

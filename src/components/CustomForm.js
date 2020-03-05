@@ -13,8 +13,8 @@ function encode(data) {
 const CheckboxGroup = ({ options, onChange }) =>
   options && options.length ? (
     <div className="checkbox__group">
-      {options.map(({ name }) => (
-        <label className="checkbox__container">
+      {options.map(({ name }, index) => (
+        <label className="checkbox__container" key={index}>
           <span className="checkbox__label">{name}</span>
           <input type="checkbox" name={name} onChange={onChange} />
         </label>
@@ -66,6 +66,12 @@ const renderFormSection = (field, onChange) => {
 };
 
 const CustomForm = ({ data }) => {
+  if (!data) {
+    return null;
+  }
+
+  console.log('CustomForm data: ', data);
+
   const { heading, fields = [], submit = "Submit" } = data;
   const formData = {};
 
