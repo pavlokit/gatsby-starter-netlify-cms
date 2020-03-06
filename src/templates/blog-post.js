@@ -18,6 +18,9 @@ export const BlogPostTemplate = ({
 }) => {
   const PostContent = contentComponent || Content
 
+  console.log('tags:', tags);
+  console.log('form:', form);
+
   return (
     <section className="section">
       {helmet || ''}
@@ -31,7 +34,7 @@ export const BlogPostTemplate = ({
 
             <PostContent content={content} />
 
-            {tags && tags.length ? (
+            {!!tags && !!tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
                 <ul className="taglist">
@@ -44,13 +47,17 @@ export const BlogPostTemplate = ({
               </div>
             ) : null}
 
-            <section className="section">
-              <div className="columns">
-                <div className="column is-10 is-offset-1">
-                  <CustomForm data={form} />
-                </div>
-              </div>
-            </section>
+            {
+              !!form && !!form.fields && !!form.fields.length && (
+                <section className="section">
+                  <div className="columns">
+                    <div className="column is-10 is-offset-1">
+                      <CustomForm data={form} />
+                    </div>
+                  </div>
+                </section>
+              )
+            }
           </div>
         </div>
       </div>
@@ -118,10 +125,10 @@ export const pageQuery = graphql`
             type
             inputType
             name
+            content
             options {
               name
             }
-            content
           }
         }
       }

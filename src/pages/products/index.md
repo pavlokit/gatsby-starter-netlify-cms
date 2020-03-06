@@ -2,29 +2,6 @@
 templateKey: product-page
 title: Our Coffee
 image: /img/jumbotron.jpg
-form:
-  heading: Book a visit
-  submit: Book now
-  fields:
-    - type: select
-      name: Club
-      options:
-        - name: London
-        - name: Lviv
-    - type: input
-      name: First Name
-      inputType: text
-    - type: input
-      name: Last Name
-      inputType: text
-    - type: input
-      name: Phone Number
-      inputType: text
-    - type: input
-      name: Email
-      inputType: email
-    - type: text
-      content: '*We will reach you to discuss details*'
 heading: Great coffee with a conscience
 path: /products
 description: >-

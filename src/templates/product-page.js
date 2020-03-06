@@ -45,13 +45,17 @@ export const ProductPageTemplate = props => {
         </h2>
       </div>
 
-      <section className="section">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <CustomForm data={form} />
-          </div>
-        </div>
-      </section>
+      {
+        !!form && !!form.fields && !!form.fields.length && (
+          <section className="section">
+            <div className="columns">
+              <div className="column is-10 is-offset-1">
+                <CustomForm data={form} />
+              </div>
+            </div>
+          </section>
+        )
+      }
 
       <section className="section section--gradient">
         <div className="container">
@@ -267,6 +271,7 @@ export const productPageQuery = graphql`
             type
             inputType
             name
+            content
             options {
               name
             }
