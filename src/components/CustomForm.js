@@ -2,6 +2,8 @@ import React from "react";
 import remark from "remark";
 import recommended from "remark-preset-lint-recommended";
 import remarkHtml from "remark-html";
+import { navigate } from "gatsby-link"
+
 import { HTMLContent } from "../components/Content";
 
 function encode(data) {
@@ -89,9 +91,7 @@ const CustomForm = ({ data }) => {
         ...formData
       })
     })
-      .then(() => {
-        console.log("Works!");
-      })
+      .then(() => navigate(form.getAttribute('action')))
       .catch(error => alert(error));
   };
 
@@ -102,7 +102,7 @@ const CustomForm = ({ data }) => {
       <form
         name="custom"
         method="post"
-        action="/contact/custom/"
+        action="/contact/thanks/"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
@@ -124,9 +124,9 @@ const CustomForm = ({ data }) => {
           );
         })}
 
-        {fields.length && (
+        {!!fields.length && (
           <button className="button" type="submit">
-            {submit}
+            {submit || 'Submit'}
           </button>
         )}
       </form>

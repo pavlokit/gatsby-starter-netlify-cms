@@ -3,25 +3,28 @@ templateKey: product-page
 title: Our Coffee
 image: /img/jumbotron.jpg
 form:
-  heading: First custom form
-  submit: Send data
+  heading: Book a visit
+  submit: Book now
   fields:
-    - type: input
-      name: ff
-      inputType: text
-    - type: text
-      content: 'Тут шось **пишеe**  [dasdasd](dasdasd)'
     - type: select
-      name: sss
+      name: Club
       options:
-        - name: '1'
-        - name: '222'
-    - type: checkboxGroup
-      options:
-        - name: text
-        - name: email
+        - name: London
+        - name: Lviv
+    - type: input
+      name: First Name
+      inputType: text
+    - type: input
+      name: Last Name
+      inputType: text
+    - type: input
+      name: Phone Number
+      inputType: text
+    - type: input
+      name: Email
+      inputType: email
     - type: text
-      content: '# new text text'
+      content: '*We will reach you to discuss details*'
 heading: Great coffee with a conscience
 path: /products
 description: >-
@@ -119,4 +122,3 @@ pricing:
       plan: Custom
       price: '??'
 ---
-
