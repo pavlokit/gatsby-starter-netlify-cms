@@ -85,3 +85,123 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions
+//   const typeDefs = `
+//     type MarkdownRemark implements Node {
+//       frontmatter: Frontmatter
+//     }
+
+//     type SelectOptions {
+//       name: [String!]!
+//     }
+
+//     type Form {
+//       name: String!
+//       type: String!
+//       heading: String!
+//       inputType: String!
+//       options: [SelectOptions!]!
+//     }
+
+//     type Frontmatter {
+//       form: Form
+//     }
+//   `
+//   createTypes(typeDefs)
+// }
+
+// exports.createSchemaCustomization = ({ actions, schema }) => {
+//   const { createTypes } = actions
+//   const typeDefs = [
+//     schema.buildObjectType({
+//       name: 'MarkdownRemark',
+//       fields: {
+//         frontmatter: 'Frontmatter!'
+//       },
+//     }),
+
+//     schema.buildObjectType({
+//       name: 'Frontmatter',
+//       fields: {
+//         title: {
+//           type: 'String!',
+//           resolve(parent) {
+//             return parent.title || '(Untitled)'
+//           }
+//         },
+//         form: {
+//           type: 'FormJson!',
+//         }
+//       }
+//     }),
+
+//     schema.buildObjectType({
+//       name: 'FormJson',
+//       fields: {
+//         heading: 'String!',
+//         submit: 'String!',
+//         // fields: ['FormFields!']
+//       },
+//     }),
+
+//     schema.buildObjectType({
+//       name: 'FormFields',
+//       fields: {
+//         type: 'String!',
+//         inputType: 'String!',
+//         name: 'String!',
+//         content: {
+//           type: 'String!',
+//           resolve(parent) {
+//             return parent.content || null
+//           }
+//         },
+//         options: {
+//           type: ['SelectOption!'],
+//           resolve(parent) {
+//             return parent.options || []
+//           }
+//         }
+//       },
+//     }),
+
+//     schema.buildObjectType({
+//       name: 'SelectOption',
+//       fields: {
+//         name: 'String!',
+//       },
+//     }),
+//   ]
+
+//   createTypes(typeDefs)
+// }
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+    }
+    type Frontmatter {
+      form: Form
+    }
+    type Form {
+      heading: String
+      submit: String
+      fields: [FormField]
+    }
+    type FormField {
+      type: String,
+      inputType: String,
+      name: String,
+      content: String,
+      options: [SelectOptions]
+    }
+    type SelectOptions {
+      name: String
+    }
+  `
+  createTypes(typeDefs)
+}
