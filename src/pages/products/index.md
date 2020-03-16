@@ -2,6 +2,27 @@
 templateKey: product-page
 title: Our Coffee
 image: /img/jumbotron.jpg
+form:
+  heading: Book a visit
+  submit: Book now!!!!!!
+  fields:
+    - type: text
+      content: '*Some text block to say smt*'
+    - type: input
+      name: First name
+      inputType: text
+    - type: input
+      name: Last name
+      inputType: text
+    - type: select
+      name: Your city
+      options:
+        - name: Lviv
+        - name: London
+    - type: checkboxGroup
+      options:
+        - name: Email
+        - name: SMS
 heading: Great coffee with a conscience
 path: /products
 description: >-
